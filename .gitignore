@@ -1,0 +1,53 @@
+# General
+.DS_Store
+*.swp
+*.swo
+
+# Build output
+build/
+dist/
+*.o
+*.a
+*.so
+*.elf
+*.uf2
+*.apk
+
+# C/C++ (CMake)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+pip-wheel-metadata/
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.dart_tool/
+.idea/
+ios/
+android/
+# Keep android/ and ios/ if they contain manually-edited config,
+# but for a containerized build, we often want to ignore them.
+# For this project, let's ignore the platform-specific directories
+# as they will be generated within the build container.
+/android-app/android/
+/android-app/ios/
+/android-app/build/
+
+# Podman/Docker
+podman-compose.yml.bak
+
+# VSCode
+.vscode/
