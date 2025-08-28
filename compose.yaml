@@ -1,0 +1,44 @@
+# Podman Compose file for the CanoeDash Project
+#
+# To build all services:
+#   podman-compose build
+#
+# To run a specific service (e.g., the host):
+#   podman-compose up zero-host
+#
+services:
+  pico-builder:
+    build:
+      context: ./pico-firmware
+      dockerfile: ContainerFile
+    # The command will run the build script inside the container.
+    # The resulting .uf2 file will be in pico-firmware/build/
+    command: ./build.sh
+    volumes:
+      - ./pico-firmware:/app
+
+  zero-host:
+    build:
+      context: ./zero-host
+      dockerfile: ContainerFile
+    # The container will run the micro_ros_agent and the BLE server.
+    # It needs access to the host's D-Bus and the serial port.
+    # Privileged mode is often required for Bluetooth access.
+    privileged: true
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+    # To keep the service running, e.g., for interactive shell
+    stdin_open: true
+    tty: true
+
+  app-builder:
+    build:
+      context: ./android-app
+      dockerfile: ContainerFile
+    # The command will trigger the flutter build process.
+    # The resulting .apk will be in android-app/build/app/outputs/flutter-apk/
+    command: flutter build apk --release
+    volumes:
+      - ./android-app:/app

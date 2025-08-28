@@ -1,0 +1,10 @@
+# ContainerFile for building the Flutter Android App for CanoeDash
+# This file uses a pre-built Flutter image that includes the Android SDK.
+FROM cirrusci/flutter:3.22.0
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# The compose.yaml file will mount the android-app directory to /app
+# and run the build command. This CMD is a fallback for standalone use.
+CMD ["flutter", "build", "apk", "--release"]
