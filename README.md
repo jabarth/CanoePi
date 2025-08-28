@@ -7,7 +7,7 @@ This repository contains the complete source code and configuration for CanoeDas
 The system consists of three main components:
 
 1.  **`pico-firmware`**: A Raspberry Pi Pico 2 based firmware written in C using FreeRTOS and Micro-ROS. It reads sensor data (oil, voltage, RPM, etc.) and controls actuators (lights, bilge pump).
-2.  **`zero-host`**: A ROS 2 application running on a Raspberry Pi Zero 2 W. It acts as a bridge, connecting the Pico via serial to a Micro-ROS agent and exposing sensor data and controls to a mobile app via a BLE GATT server.
+2.  **`zero-host`**: A containerized service for the Raspberry Pi Zero 2 W that runs both a Micro-ROS agent and a ROS 2 application. The agent communicates with the Pico over a serial connection, while the ROS 2 application provides a BLE GATT server to interface with the mobile app.
 3.  **`android-app`**: A configurable dashboard application built with Flutter. It connects to the Pi Zero host via BLE to display real-time data and send commands.
 
 All components are designed to be built and managed through the provided `compose.yaml` file.
