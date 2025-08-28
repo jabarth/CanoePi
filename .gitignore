@@ -1,5 +1,7 @@
 # General
 .DS_Store
+.vscode/
+.idea/
 *.swp
 *.swo
 
@@ -30,24 +32,30 @@ env/
 *.egg-info/
 pip-wheel-metadata/
 
-# Flutter
+# Flutter/Dart
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
 .dart_tool/
-.idea/
-ios/
-android/
-# Keep android/ and ios/ if they contain manually-edited config,
-# but for a containerized build, we often want to ignore them.
+.pub-cache/
+.pub/
 # For this project, let's ignore the platform-specific directories
 # as they will be generated within the build container.
 /android-app/android/
 /android-app/ios/
 /android-app/build/
 
+
 # Podman/Docker
 podman-compose.yml.bak
 
-# VSCode
-.vscode/
+# IDE files
+/nbproject/
+/nbbuild/
+/nbdist/
+/nblibraries.properties
+/nb-configuration.xml
+
+# Binaries
+/bin/
+/obj/

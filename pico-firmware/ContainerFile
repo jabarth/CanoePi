@@ -1,0 +1,33 @@
+# ContainerFile for building the Pico firmware for CanoeDash
+FROM ubuntu:24.04
+
+# Set non-interactive frontend for package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install build dependencies for Pico SDK and Micro-ROS
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    cmake \
+    gcc-arm-none-eabi \
+    libnewlib-arm-none-eabi \
+    git \
+    python3 \
+    g++ \
+    doxygen && \
+    rm -rf /var/lib/apt/lists/*
+
+# Clone and set up Pico SDK
+ENV PICO_SDK_PATH=/pico-sdk
+RUN git clone --depth 1 https://github.com/raspberrypi/pico-sdk.git ${PICO_SDK_PATH}
+
+# Clone micro-ROS for Pico SDK into a non-mounted directory
+RUN git clone --depth 1 https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk.git /micro_ros_ws
+
+# Set up the working directory for the application
+WORKDIR /app
+
+# The compose.yaml file will mount the project directory here.
+# The build will be triggered by running the build.sh script.
+# Example: podman-compose run --rm pico-builder
+CMD ["./build.sh"]

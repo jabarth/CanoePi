@@ -1,0 +1,41 @@
+name: canoedash_app
+description: A dashboard application for the CanoeDash project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # BLE Communication
+  flutter_blue_plus: ^1.15.2
+
+  # State Management
+  provider: ^6.0.5
+
+  # Persistent Storage
+  shared_preferences: ^2.2.0
+
+  # UI Components
+  percent_indicator: ^4.2.3
+
+  # GPS
+  geolocator: ^10.1.0
+
+  # JSON parsing
+  json_annotation: ^4.8.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
